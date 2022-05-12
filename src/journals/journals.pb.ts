@@ -7,8 +7,7 @@ import { Empty } from './google/protobuf/empty.pb';
 
 export const protobufPackage = 'journals';
 
-/** CreateJournal */
-export interface CreateJournalRequest {
+export interface JournalRequest {
   title: string;
   author: number;
   image?: string | undefined;
@@ -16,18 +15,18 @@ export interface CreateJournalRequest {
   datetime: string;
 }
 
+/** CreateJournal */
 export interface CreateJournalResponse {
   status: number;
   error: string[];
   id: number;
-  data: CreateJournalRequest | undefined;
+  data: JournalRequest | undefined;
 }
 
-/** EditJournal */
 export interface EditJournalRequest {
-  id: string;
+  id: number;
   title: string;
-  author: string;
+  author: number;
   image?: string | undefined;
   body: string;
   datetime: string;
@@ -36,21 +35,13 @@ export interface EditJournalRequest {
 export interface EditJournalResponse {
   status: number;
   error: string[];
-  data: EditJournalRequest | undefined;
+  id: number;
+  data: JournalRequest | undefined;
 }
 
 /** DeleteJournal */
 export interface DeleteJournalRequest {
   id: number;
-}
-
-export interface Data {
-  id: number;
-  title: string;
-  author: string;
-  image?: string | undefined;
-  body: string;
-  datetime: string;
 }
 
 export interface FindOneRequest {
@@ -60,21 +51,20 @@ export interface FindOneRequest {
 export interface FindOneResponse {
   status: number;
   error: string[];
-  data: Data | undefined;
+  id: number;
+  data: JournalRequest | undefined;
 }
 
 export interface FindAllResponse {
   status: number;
   error: string[];
-  data: Data | undefined;
+  data: JournalRequest[];
 }
 
 export const JOURNALS_PACKAGE_NAME = 'journals';
 
 export interface JournalServiceClient {
-  createJournal(
-    request: CreateJournalRequest,
-  ): Observable<CreateJournalResponse>;
+  createJournal(request: JournalRequest): Observable<CreateJournalResponse>;
 
   editJournal(request: EditJournalRequest): Observable<EditJournalResponse>;
 
@@ -87,7 +77,7 @@ export interface JournalServiceClient {
 
 export interface JournalServiceController {
   createJournal(
-    request: CreateJournalRequest,
+    request: JournalRequest,
   ):
     | Promise<CreateJournalResponse>
     | Observable<CreateJournalResponse>

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { JOURNAL_SERVICE_NAME, JOURNALS_PACKAGE_NAME } from './journal.pb';
+import { JOURNAL_SERVICE_NAME, JOURNALS_PACKAGE_NAME } from './journals.pb';
 import { JournalController } from './journal.controller';
 
 @Module({

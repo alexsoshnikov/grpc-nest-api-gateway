@@ -16,14 +16,14 @@ import { Observable } from 'rxjs';
 import {
   FindAllResponse,
   FindOneResponse,
-  CreateJournalRequest,
+  JournalRequest,
   CreateJournalResponse,
   JOURNAL_SERVICE_NAME,
   JournalServiceClient,
   EditJournalRequest,
   EditJournalResponse,
   DeleteJournalRequest,
-} from './journal.pb';
+} from './journals.pb';
 import { AuthGuard } from '../auth/auth.guard';
 import { Empty } from './google/protobuf/empty.pb';
 
@@ -42,7 +42,7 @@ export class JournalController implements OnModuleInit {
   @Post()
   @UseGuards(AuthGuard)
   private async createProduct(
-    @Body() body: CreateJournalRequest,
+    @Body() body: JournalRequest,
   ): Promise<Observable<CreateJournalResponse>> {
     return this.svc.createJournal(body);
   }
