@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { JOURNAL_SERVICE_NAME, JOURNALS_PACKAGE_NAME } from './journals.pb';
-import { JournalsController } from './journals.controller';
+import { JOURNAL_SERVICE_NAME, JOURNALS_PACKAGE_NAME } from './journal.pb';
+import { JournalController } from './journal.controller';
 
 @Module({
   imports: [
@@ -17,6 +17,6 @@ import { JournalsController } from './journals.controller';
       },
     ]),
   ],
-  controllers: [JournalsController],
+  controllers: [JournalController],
 })
-export class JournalsModule {}
+export class JournalModule {}
